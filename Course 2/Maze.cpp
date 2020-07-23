@@ -443,51 +443,55 @@ void Labirint::Guid()
 
 void Labirint::Menu()
 {
-	int df;
-	system("cls");
-	cout << "1 - Start to game" << endl;
-	cout << "2 - Back to game" << endl;
-	cout << "3 - Save game" << endl;
-	cout << "4 - Load game" << endl;
-	cout << "5 - Restart" << endl;
-	cout << "6 - Exit!" << endl;
-	cout << "Select: ";
-	cin >> df;
-	switch (df)
+	int df = 0;
+	do
 	{
-	case 1:
-	{
-		PlayGame();
-	}break;
-	case 2:
-	{
-		PlayGame();
-	}break;
-	case 3:
-	{
-		Save();
-	}break;
-	case 4:
-	{
-		Load();
-	}break;
-	case 5:
-	{
-		Restart();
-	}break;
-	case 6:
-	{
-		exit(0);
-	}break;
-	case 96:
-	{
-		Console();
-	}break;
+		system("cls");
+		cout << "1 - Start to game" << endl;
+		cout << "2 - Back to game" << endl;
+		cout << "3 - Save game" << endl;
+		cout << "4 - Load game" << endl;
+		cout << "5 - Restart" << endl;
+		cout << "6 - Exit!" << endl;
+		cout << "Select: ";
+		cin >> df;
+		switch (df)
+		{
+		case 1:
+		{
+			PlayGame();
+		}break;
+		case 2:
+		{
+			PlayGame();
+		}break;
+		case 3:
+		{
+			Save();
+		}break;
+		case 4:
+		{
+			Load();
+		}break;
+		case 5:
+		{
+			Restart();
+		}break;
+		case 6:
+		{
+			exit(0);
+		}break;
+		case 96:
+		{
+			Console();
+		}break;
 
-	default:
-		cout << "Error" << endl;
-		break;
-	}
+		default:
+			cout << "Error" << endl;
+			break;
+		}
+	} while (df != 6 );
+	
 }
 ////////////////////////////////////
 void HideConsoleCursor()
