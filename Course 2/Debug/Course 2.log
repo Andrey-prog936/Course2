@@ -1,0 +1,7 @@
+﻿  Source.cpp
+C:\Users\Hp\source\repos\Course 2\Course 2\Source.cpp(76): warning C4715: Labirint::Restart: значение возвращается не при всех путях выполнения
+C:\Users\Hp\source\repos\Course 2\Course 2\Source.cpp(146): warning C4715: Labirint::MoveRight: значение возвращается не при всех путях выполнения
+C:\Users\Hp\source\repos\Course 2\Course 2\Source.cpp(183): warning C4715: Labirint::MoveLeft: значение возвращается не при всех путях выполнения
+C:\Users\Hp\source\repos\Course 2\Course 2\Source.cpp(216): warning C4715: Labirint::MoveUp: значение возвращается не при всех путях выполнения
+C:\Users\Hp\source\repos\Course 2\Course 2\Source.cpp(250): warning C4715: Labirint::MoveDown: значение возвращается не при всех путях выполнения
+  Course 2.vcxproj -> C:\Users\Hp\source\repos\Course 2\Debug\Course 2.exe
