@@ -10,12 +10,13 @@ using namespace std;
 class Labirint
 {
 private:
-	int detect = 1;
+	bool detect = 1;
 	char player;
 	int point;
 	int x, y;
 	static const int x2 = 17, y2 = 43;
 	char map[x2][y2];
+	clock_t t1 = clock();
 	/////////////////////////////////////////////
 	void GameOver();
 	void YouWin(clock_t t0);

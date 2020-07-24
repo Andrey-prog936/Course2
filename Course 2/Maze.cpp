@@ -18,16 +18,15 @@ void Labirint::GameOver()
 
 void Labirint::YouWin(clock_t t0)
 {
-	system("mode con cols=60 lines=19");
-	clock_t t1 = clock();
-	cout << "Time: " << (int)(t1 - t0) / CLOCKS_PER_SEC << " seconds" << endl;
+	system("mode con cols=61 lines=19");
+	cout << "Time: " << ((int)(t1 - t0) / CLOCKS_PER_SEC) * -1 << " seconds" << endl;
 	green
-		cout << R"(  _     _   _____   _   _    _         _   _   _ __     _
- \ \   / / /  _  \ | | | |  | |   _   | | | | | |\ \   | |
-  \ \_/ /  | | | | | | | |  | |  / \  | | | | | | \ \  | |
-   \   /   | | | | | | | |  | | / _ \ | | | | | |  \ \ | |
-	| |    | |_| | | |_| |  | |/ / \ \| | | | | |   \ \| |
-	|_|    \_____/ \_____/  \___/   \___/ |_| |_|    \_|_|
+		cout << R"(  _     _   _____   _   _     _         _   _   _ __     _
+ \ \   / / /  _  \ | | | |   | |   _   | | | | | |\ \   | |
+  \ \_/ /  | | | | | | | |   | |  / \  | | | | | | \ \  | |
+   \   /   | | | | | | | |   | | / _ \ | | | | | |  \ \ | |
+    | |    | |_| | | |_| |   | |/ / \ \| | | | | |   \ \| |
+    |_|    \_____/ \_____/   \___/   \___/ |_| |_|    \_|_|
 
 )";
 	def
@@ -36,6 +35,7 @@ void Labirint::YouWin(clock_t t0)
 
 void Labirint::Restart()
 {
+	
 	cout << "Want to try again?" << endl;
 	cout << "1 - Yes\n2 - No" << endl;
 	int d;
@@ -45,8 +45,9 @@ void Labirint::Restart()
 	{
 	case 1:
 	{
-		system("cls");
+		cls;
 		this->x = 1;	this->y = 1;
+		this->t1 = clock();
 		PlayGame();
 	}break;
 	case 2:
@@ -68,44 +69,40 @@ void Labirint::Show(int point)
 		{
 			if (map[i][j] == '@')
 			{
-				orange
-					cout << map[i][j];
-				def
+				orange	cout << map[i][j];	def
 			}
 			else if (map[i][j] == '#')
 			{
-				red
-					cout << map[i][j];
-				def
+				red	cout << map[i][j];	def
 			}
 			else if (map[i][j] == 'F')
 			{
-				green
-					cout << map[i][j];
-				def
+				green	cout << map[i][j];	def
 			}
 			else if (map[i][j] == player)
 			{
-				cyan
-					cout << map[i][j];
-				def
+				cyan	cout << map[i][j];	def
+			}
+			else if (map[i][j] == '|')
+			{
+				if (point >= 19)
+					map[i][j] = ' ';
+				blue	cout << map[i][j];	def
 			}
 			else
 			{
-				blue
-					cout << map[i][j];
-				def
+				blue	cout << map[i][j];	def
 			}
 
 		}
 		cout << endl;
 	}
-	cout << "Point: " << point << "/19" << endl;
+	cout << "\t\tPoint: " << point << "/19" << endl;
 }
 
 int Labirint::MoveRight(int x, int y, int point, clock_t t0)
 {
-	system("cls");
+	cls;
 	if (map[x][y + 1] == '*')
 	{
 	}
@@ -117,7 +114,7 @@ int Labirint::MoveRight(int x, int y, int point, clock_t t0)
 	}
 	else if (map[x][y + 1] == 'F')
 	{
-		system("cls");
+		cls;
 		YouWin(t0);
 		return 0;
 	}
@@ -138,7 +135,7 @@ int Labirint::MoveRight(int x, int y, int point, clock_t t0)
 
 int Labirint::MoveLeft(int x, int y, int point, clock_t t0)
 {
-	system("cls");
+	cls;
 	if (map[x][y - 1] == '*' || map[x][y - 1] == '|')
 	{
 	}
@@ -146,14 +143,11 @@ int Labirint::MoveLeft(int x, int y, int point, clock_t t0)
 	{
 		map[x][y] = ' ';
 		GameOver();
-		clock_t t1 = clock();
-		cout << "Time: " << (int)(t1 - t0) / CLOCKS_PER_SEC << " seconds" << endl;
 		return 0;
 	}
 	else if (map[x][y - 1] == 'F')
 	{
-		system("cls");
-
+		cls;
 		YouWin(t0);
 		return 0;
 	}
@@ -175,7 +169,7 @@ int Labirint::MoveLeft(int x, int y, int point, clock_t t0)
 
 int Labirint::MoveUp(int x, int y, int point, clock_t t0)
 {
-	system("cls");
+	cls;
 	if (map[x - 1][y] == '*')
 	{
 	}
@@ -187,7 +181,7 @@ int Labirint::MoveUp(int x, int y, int point, clock_t t0)
 	}
 	else if (map[x - 1][y] == 'F')
 	{
-		system("cls");
+		cls;
 		YouWin(t0);
 		return 0;
 	}
@@ -208,7 +202,7 @@ int Labirint::MoveUp(int x, int y, int point, clock_t t0)
 
 int Labirint::MoveDown(int x, int y, int point, clock_t t0)
 {
-	system("cls");
+	cls;
 	if (map[x + 1][y] == '*')
 	{
 	}
@@ -220,7 +214,7 @@ int Labirint::MoveDown(int x, int y, int point, clock_t t0)
 	}
 	else if (map[x + 1][y] == 'F')
 	{
-		system("cls");
+		cls;
 		YouWin(t0);
 		return 0;
 	}
@@ -234,7 +228,6 @@ int Labirint::MoveDown(int x, int y, int point, clock_t t0)
 		map[x][y] = ' ';
 		map[++x][y] = player;
 	}
-	if (point == 19) { map[15][34] = ' '; }
 	this->x = x;
 	this->y = y;
 	Show(this->point);
@@ -292,11 +285,12 @@ int Labirint::PlayGame()
 	if (detect)
 	{
 		cout << "Enter the symbol you want to play: ";
-		cin >> player; --detect; system("cls");
+		cin >> player; detect = 0; cls;
 	}
 	map[x][y] = player;
 	clock_t t0 = clock();
 	Show(point);
+	t1 = 0;
 	for (;;)
 	{
 		int d = _getch();
@@ -339,7 +333,7 @@ int Labirint::PlayGame()
 
 void Labirint::Console()
 {
-	system("cls");
+	cls;
 	green
 		cout << "\t\tConsole" << endl;
 	red cout << "\t\t\t\tq - quit" << endl;
@@ -401,6 +395,7 @@ void Labirint::Console()
 	} while (action != "q");
 
 }
+
 Labirint::Labirint() : point(0), x(1), y(1)
 {
 	player = '$';
@@ -446,7 +441,7 @@ void Labirint::Menu()
 	int df = 0;
 	do
 	{
-		system("cls");
+		cls;
 		cout << "1 - Start to game" << endl;
 		cout << "2 - Back to game" << endl;
 		cout << "3 - Save game" << endl;
@@ -490,15 +485,15 @@ void Labirint::Menu()
 			cout << "Error" << endl;
 			break;
 		}
-	} while (df != 6 );
-	
+	} while (df != 6);
+
 }
 ////////////////////////////////////
 void HideConsoleCursor()
 {
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-CONSOLE_CURSOR_INFO info;
-info.dwSize = 100;
-info.bVisible = FALSE;
-SetConsoleCursorInfo(consoleHandle, &info);
+	CONSOLE_CURSOR_INFO info;
+	info.dwSize = 100;
+	info.bVisible = FALSE;
+	SetConsoleCursorInfo(consoleHandle, &info);
 }
